@@ -1,0 +1,282 @@
+/* сброс стилей браузера */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* основные стили */
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #0F172A;
+  background-color: #EFF9FF;
+}
+
+body.lock {
+  overflow: hidden;
+}
+
+.app {
+  --app-padding: 24px;
+  --app-width: 768px;
+
+  max-width: var(--app-width);
+  padding: 48px var(--app-padding) 0 var(--app-padding);
+  margin: 0 auto;
+}
+
+/* текст */
+.text-h1 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+  text-wrap: balance;
+}
+
+.text-h2 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* страницы формы */
+.form {
+  position: relative;
+  height: 100%;
+  counter-reset: door 0, window 0;
+}
+
+.form-sticky {
+  padding: 24px var(--app-padding);
+  background-color: #EFF9FF;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+/* группа форм */
+.form-group {
+  position: relative;
+  display: grid;
+  gap: 16px;
+}
+
+.form-group::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: calc(-1 * var(--app-padding));
+  width: calc(100% + 2 * var(--app-padding));
+  height: 1px;
+  background-color: #E2E8F0;
+  display: block;
+}
+
+.form-group--main {
+  padding-bottom: 40px;
+}
+
+.form-group--window {
+  counter-increment: window 1;
+}
+
+.form-group--door {
+  counter-increment: door 1;
+}
+
+.form-group--window .text-h2::after {
+  content: 'Окно №' counter(window);
+}
+
+.form-group--door .text-h2::after {
+  content: 'Дверь №' counter(door);
+}
+
+.form-group--opt {
+  padding: 32px 0;
+}
+
+.form-header {
+  grid-column: 2 span;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+/* поля формы */
+.form-field {
+  position: relative;
+  display: grid;
+  gap: 6px;
+}
+
+.form-field__label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0F172A;
+}
+
+.form-select,
+.form-field__input {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0F172A;
+  display: flex;
+  padding: 8px 56px 8px 12px;
+  background-color: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+}
+
+.form-field__input::placeholder {
+  color: #94A3B8;
+}
+
+.form-select {
+  grid-column: 2 span;
+  font-size: 14px;
+  appearance: none;
+  background-image: url('assets/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+
+
+  .form-field--length {}
+}
+
+.form-field--width,
+.form-field--area {
+  grid-column: 2 span;
+}
+
+.form-field--length::after,
+.form-field--height::after,
+.form-field--width::after,
+.form-field--area::after {
+  position: absolute;
+  font-size: 14px;
+  right: 12px;
+  bottom: 8px;
+  color: #94A3B8;
+  pointer-events: none;
+}
+
+.form-field--length::after,
+.form-field--height::after {
+  content: 'м';
+}
+
+.form-field--width::after {
+  content: 'мм';
+}
+
+.form-field--area::after {
+  content: 'м²';
+}
+
+/* кнопки */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  width: 100%;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn--primary {
+  background-color: #0F172A;
+  color: #fff;
+}
+
+.btn--secondary {
+  border: 1px solid #E9EEF5;
+  background-color: #fff;
+  color: #0F172A;
+}
+
+.btn--tertiary {
+  padding: 0;
+  width: fit-content;
+  background-color: transparent;
+  color: #64748B;
+}
+
+.button-group {
+  margin-top: 40px;
+  margin-bottom: 120px;
+  display: grid;
+  gap: 12px;
+}
+
+/* результат */
+.result {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #EFF9FF;
+  padding: 48px var(--app-padding) 24px var(--app-padding);
+  overflow: auto;
+}
+
+.result.hidden {
+  display: none;
+}
+
+.result .button-group {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.result-number {
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #0F172A;
+  margin-bottom: 16px;
+}
+
+.result-text {
+  margin-bottom: 12px;
+}
+
+.result-img {
+  align-self: center;
+  b
+}

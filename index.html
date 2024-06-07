@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- подключаю стили -->
+  <link rel="stylesheet" href="style.css">
+  <!-- подключаю скрипты -->
+  <script src="script.js" defer></script>
+  <title>Калькулятор для расчета газобетонных блоков</title>
+  <!-- подключаю шрифт -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <!-- подключаю иконки -->
+  <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/favicon/favicon.svg" type="image/svg">
+  <link rel="apple-touch-icon" href="images/icons/icon-72x72.png" />
+  <link rel="apple-touch-icon" href="images/icons/icon-96x96.png" />
+  <link rel="apple-touch-icon" href="images/icons/icon-128x128.png" />
+  <link rel="apple-touch-icon" href="images/icons/icon-144x144.png" />
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" href="images/icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" href="images/icons/icon-384x384.png" />
+  <link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
+  <!-- добавляю возможность скачивать приложение -->
+  <script src="pwa.js" defer></script>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-status-bar" content="#EFF9FF" />
+  <meta name="theme-color" content="#EFF9FF" />
+</head>
+
+<body>
+  <main class="app">
+    <h1 class="text-h1">Калькулятор газобетонных блоков</h1>
+    <form class="form">
+      <div class="form__inner">
+        <div class="form-group form-group--main">
+          <div class="form-header">
+            <h2 class="text-h2">Стены</h2>
+          </div>
+          <div class="form-field form-field--length">
+            <label class="form-field__label">Длина</label>
+            <input class="form-field__input" name="wall-length" type="number" step="0.01" min="1" placeholder="0"
+              required>
+          </div>
+          <div class="form-field form-field--height">
+            <label class="form-field__label">Высота</label>
+            <input class="form-field__input" name="wall-height" type="number" step="0.01" min="1" placeholder="0"
+              required>
+          </div>
+          <div class="form-field form-field--width">
+            <label class="form-field__label">Ширина</label>
+            <input class="form-field__input" name="wall-width" type="number" step="0.01" min="1" placeholder="0"
+              required>
+          </div>
+          <select class="form-select" name="block-size" required>
+            <option value="">Выбрать размер блока</option>
+            <option class="form-select__option form-select__option--small" value="0.018">Малый (600x300x100мм)</option>
+            <option class="form-select__option form-select__option--medium" value="0.036">Средний (600x300x200мм)
+            </option>
+            <option class="form-select__option form-select__option--large" value="0.072">Крупный (600x300x400мм)
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="button-group">
+        <button class="btn btn--secondary" type="button" onclick="addAperture('door')">
+          <img class="btn-icon" src="assets/plus.svg" alt="" width="16" height="16">
+          Добавить дверь
+        </button>
+        <button class="btn btn--secondary" type="button" onclick="addAperture('window')">
+          <img class="btn-icon" src="assets/plus.svg" alt="" width="16" height="16">
+          Добавить окно
+        </button>
+      </div>
+      <div class="form-sticky">
+        <button class="btn btn--primary" type="submit">Рассчитать</button>
+      </div>
+    </form>
+    <div class="result hidden">
+      <h1 class="result-number">134</h1>
+      <p class="result-text">Столько газобетонных блоков вам понадобится для строения с учётом запаса 5%</p>
+      <img class="result-img" src="assets/house.png" width="327" height="248" alt="Красивый построенный дом">
+      <div class="button-group">
+        <button class="btn btn--secondary" onclick="hideResult()">Вернуться назад</button>
+        <button class="btn btn--primary" onclick="restart()">Начать сначала</button>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
