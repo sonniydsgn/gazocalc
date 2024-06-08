@@ -8,12 +8,9 @@ let data = {}
 // функции
 function calculate(data) {
   // собираю размеры стен в переменные
-  const wallH = data['wall-height'];
-  const wallL = data['wall-length'];
+  const wallH = +data['wall-height'];
+  const wallL = +data['wall-length'];
   const blockSize = data['block-size'];
-
-  // перевожу толщину стены из мм в м
-  const wallW = data['wall-width'] / 1000;
 
   // удаляю размеры стен из данных, чтобы остались только проемы
   clearWallData()
@@ -22,7 +19,7 @@ function calculate(data) {
   const aperture = Math.abs(Object.values(data).reduce((a, b) => a + b, 0));
 
   // считаю общую площадь строения
-  const area = Math.ceil(wallL * wallH - aperture) * wallW * 1.05;
+  const area = Math.ceil(wallL * wallH - aperture) * 1.05;
 
   // считаю количество блоков
   const blocksValue = Math.ceil(area / blockSize);
